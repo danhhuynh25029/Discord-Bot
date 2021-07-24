@@ -6,6 +6,7 @@ sys.path.append(lib_path)
 client = commands.Bot(command_prefix = '.')
 from getWeather import *
 from getCovid import *
+from getNew import *
 @client.event
 async def on_ready():
     print('Bot is ready')
@@ -32,4 +33,11 @@ async def covid(ctx,arg):
 async def weather(ctx,arg):
     tb = getWeather(arg)
     await ctx.send(tb)
-client.run(your token)
+@client.command()
+async def new(ctx):
+    url_list = getURL()
+    for i in url_list:
+        await ctx.send(i)
+# Your token
+Your_token = ''
+client.run(Your_token)
