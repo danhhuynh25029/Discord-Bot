@@ -32,4 +32,4 @@ async def covid(ctx,arg):
 async def weather(ctx,arg):
     tb = getWeather(arg)
     await ctx.send(tb)
-client.run('ODY4MzEzOTYwMDQ1MjMyMTY4.YPt2ZA.CxOlhroSr7vC4ALA7bqQrPiB_sY')
+#client.run('ODY4MzEzOTYwMDQ1MjMyMTY4.YPt2ZA.CxOlhroSr7vC4ALA7bqQrPiB_sY')
