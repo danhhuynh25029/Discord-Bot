@@ -31,4 +31,5 @@ async def covid(ctx,arg):
 @client.command()
 async def weather(ctx,arg):
     tb = getWeather(arg)
-    await ctx.send(tb)client.run(your token)
+    await ctx.send(tb)
+client.run(your token)
