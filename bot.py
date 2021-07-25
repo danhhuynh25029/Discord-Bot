@@ -1,5 +1,3 @@
-import discord
-from discord.ext import commands
 import os,sys
 lib_path = os.path.abspath(os.path.join('src'))
 sys.path.append(lib_path)
@@ -7,6 +5,7 @@ client = commands.Bot(command_prefix = '.')
 from getWeather import *
 from getCovid import *
 from getNew import *
+from getAnime import *
 @client.event
 async def on_ready():
     print('Bot is ready')
@@ -36,6 +35,11 @@ async def weather(ctx,arg):
 @client.command()
 async def new(ctx):
     url_list = getURL()
+    for i in url_list:
+        await ctx.send(i)
+@client.command()
+async def anime(ctx,arg):
+    url_list = getListAnime(arg)
     for i in url_list:
         await ctx.send(i)
 # Your token
