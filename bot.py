@@ -54,8 +54,14 @@ async def covid(ctx,arg):
         await ctx.send(embed=embed)
 @client.command()
 async def weather(ctx,arg):
-    tb = getWeather(arg)
-    await ctx.send(tb)
+    tb = getWeather(arg)[0]
+    embed = discord.Embed(
+        color = discord.Color.blue()
+    )
+    embed.add_field(name="city",value=tb[0],inline=True)
+    embed.add_field(name="description",value=tb[1],inline=True)
+    embed.add_field(name="temp",value=tb[2],inline=True)
+    await ctx.send(embed=embed)
 @client.command()
 async def new(ctx):
     url_list = getURL()

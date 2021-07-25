@@ -24,4 +24,3 @@ if __name__ == "__main__":
     tb = getCovid("US")
     t = tb[0]
     print(t[0])
-
