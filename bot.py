@@ -1,3 +1,6 @@
+import discord
+from discord import colour
+from discord.ext import commands
 import os,sys
 lib_path = os.path.abspath(os.path.join('src'))
 sys.path.append(lib_path)
@@ -27,7 +30,28 @@ async def on_member_remove(member):
 @client.command()
 async def covid(ctx,arg):
     tb = getCovid(arg)
-    await ctx.send(tb)
+    if len(tb) > 1:
+        for tmp in tb:
+            embed = discord.Embed(
+            title = tmp[0],
+            discription = "This is discription",
+            color=discord.Color.blue()
+            )
+            embed.add_field(name="Country",value=tmp[1],inline=True)
+            embed.add_field(name="TotalConfirmed",value=str(tmp[2]),inline=True)
+            embed.add_field(name="TotalDeaths",value=str(tmp[3]),inline=True)
+            await ctx.send(embed=embed)
+    else:
+        tmp = tb[0]
+        embed = discord.Embed(
+            title = tmp[0],
+            discription = "This is discription",
+            color=discord.Color.blue()
+        )
+        embed.add_field(name="Country",value=tmp[1],inline=True)
+        embed.add_field(name="TotalConfirmed",value=str(tmp[2]),inline=True)
+        embed.add_field(name="TotalDeaths",value=str(tmp[3]),inline=True)
+        await ctx.send(embed=embed)
 @client.command()
 async def weather(ctx,arg):
     tb = getWeather(arg)
@@ -42,6 +66,9 @@ async def anime(ctx,arg):
     url_list = getListAnime(arg)
     for i in url_list:
         await ctx.send(i)
+@client.command()
+async def clear(ctx,amount=5):
+    await ctx.channel.purge(limit=amount)
 # Your token
 Your_token = ''
 client.run(Your_token)
